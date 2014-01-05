@@ -1,0 +1,60 @@
+{% extends 'temp_base.html' %}
+
+{% block content %}
+<div class="innerContainer" style="margin-left:61px;margin-top: -123px">
+        <div id="gmap-container" class="gmap" style="width:100%; height:300px"></div>
+            <p>
+                <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script><script type="text/javascript" src="http://themes.themebakers.com/biopic/wp-content/themes/biopic/javascripts/jquery.gmap.min.js"></script><script type="text/javascript">
+                  function loadGMap() {
+                    jQuery(document).ready(function($) {
+                        $("#gmap-container").gMap(
+                            {
+                                latitude: 0,
+                                longitude: 0,
+                                maptype: "ROADMAP", // "HYBRID", "SATELLITE", "ROADMAP" or "TERRAIN"
+                                zoom: 14,
+                                scrollwheel: false,
+                                markers: [
+                                    {
+                                        latitude: 0,
+                                        longitude: 0,
+                                        address: "Banglore, India",
+                                        popup: false,
+                                        html: ""
+                                    }
+                                ],
+                                controls: {
+                                    panControl: true,
+                                    zoomControl: true,
+                                    mapTypeControl: true,
+                                    scaleControl: true,
+                                    streetViewControl: false,
+                                    overviewMapControl: false
+                                }
+                            });
+                    });
+                  }
+                  addLoadEvent(loadGMap);
+                </script>
+            </p>
+        </div>
+
+        <div class="info">
+                <h4>Ask me anything.</h4>
+                <form method="post">{% csrf_token %}
+                    {{ success }}
+                    <label for="name">Your name</label>
+                    <input type="text" name="name" id="uname" />
+                    <p class="error name-error"> {{ error.name.0 }}</p>
+                    <label for="email">Your email</label>
+                    <input type="text" name="email" id="email" />
+                    <p class="error email-error">{{ error.email.0 }}</p>
+                    <label for="message">Your message</label>
+                    <textarea name="messages" ></textarea>
+                    <p class="error message-error">{{ error.messages.0 }}</p>
+                    <br />
+                    <input type="submit" class="submit" name="submit" value="Submit" />
+                </form>
+        </div>
+
+{% endblock %}

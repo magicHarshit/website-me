@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+  <title>django python developer | Harshit Agarwal</title>
+  <meta name="author" content="Harshit Agarwal" />
+  <meta name="description" content="Experienced Freelance Django and Python developer, with good experience in web application development using the Django as the underlying backbone. Based in India." />
+  <meta name="keywords" content="django, freelance, developer, python, web application, Harshit Agarwal, India" />
+  <meta name="robots" content="all" />
+
+
+
+  <link rel='stylesheet' id='base-css' href='{{ STATIC_URL }}css/base.css' type='text/css' media='all' />
+
+<script type='text/javascript' src='{{ STATIC_URL }}js/jquery.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}js/jquery.gmap.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}js/jquery.placeholder.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}js/jquery.prettyPhoto.js'></script>
+
+    <script type="text/javascript"> 
+		
+		jQuery(document).ready(function($) {
+			/* === Handles palceholder values for input and textareas in older browsers === */
+			$('input, textarea').placeholder();
+			
+			/* === Pretty Photo === */
+			$("a[rel^='prettyPhoto']").prettyPhoto();
+			
+			/* === Fit Videos === */
+			//$(".scale-video").fitVids();
+			
+			/* === Portfolio Filter Menu === */
+			$('ul.filter li a').click(function(e) {
+				e.preventDefault();
+				
+				$('ul.filter li.active').removeClass('active');
+				$(this).parent().addClass('active');
+				
+				var filterVal = $(this).text().toLowerCase().replace(new RegExp(" ", "g"), "-");
+				
+				if(filterVal == 'all') {
+					$('.work').removeClass('item-hidden');
+					$('.work a').attr('rel', 'prettyPhoto[biopic_works_gal]');
+				}
+				else {
+					$('.work').each(function(index, element) {
+						if(!$(this).hasClass(filterVal)) {
+							$(this).addClass('item-hidden');
+							$('a', this).attr('rel', '');
+						}
+						else {
+							$(this).removeClass('item-hidden');
+							$('a', this).attr('rel', 'prettyPhoto[biopic_works_gal]');
+						}
+					});
+				}
+			});
+			
+			/* === Accordion === */
+			var accordionTabs = $('.accordion > .atab');
+			$('.accordion > .atitle > a').click(function(e) {
+				e.preventDefault();
+				
+				currenttab = $(this);
+				targetTab =  currenttab.parent().next();
+				
+				// if same tab clicked then close it
+				if (currenttab.parent().hasClass('active')) {
+					accordionTabs.slideUp(300, 'easeOutExpo');
+					currenttab.parent().parent().find('.atitle').removeClass('active');
+				}
+				else if(!targetTab.hasClass('active'))	{
+					accordionTabs.slideUp(300, 'easeOutExpo');
+					targetTab.slideDown(300, 'easeOutExpo');
+					currenttab.parent().parent().find('.atitle').removeClass('active');
+					currenttab.parent().addClass('active');
+				}
+			});
+			
+			
+			/* === Toggle === */
+			$(".toggle > .ttitle > a").click(function(e) {
+				e.preventDefault();
+				
+				if($(this).parent().hasClass('active'))	{
+					$(this).parent().removeClass("active").closest('.toggle').find('.ttab').slideUp(300, 'easeOutExpo');
+				}
+				else {
+					$(this).parent().addClass("active").closest('.toggle').find('.ttab').slideDown(300, 'easeOutExpo');
+				}
+			});
+			
+			/* === Closes alert boxes e.g. warning, success etc. === */
+			$('.alert-box .close-btn').click(function(e) {
+				e.preventDefault();
+				$(this).parent().slideUp();
+			});
+			
+					
+		});
+	 
+	</script>
+    
+    <script type="text/javascript">
+		/* === Handles multiple functions for window.onload event === */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			}
+			else {
+				window.onload = function() {
+					if (oldonload) {
+						oldonload();
+					}
+					func();
+				}
+			}
+		}
+	</script>
+
+</head>
+    <body class="home profile">
+        <div class="wrapper">
+            {% include 'left_sidebar.html' %}
+            <div class="content">
+                {% include 'upper_container.html' %}
+                {% include 'right_sidebar.html' %}
+                <br class="clear" />
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

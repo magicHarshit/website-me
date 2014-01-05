@@ -1,0 +1,8 @@
+Django==1.5.4
+boto
+dj-database-url
+django-storages
+gunicorn
+psycopg2
+wsgiref
+dj-static

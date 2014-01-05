@@ -1,0 +1,34 @@
+{% extends 'temp_base.html' %}
+
+{% block content %}
+
+            <div class="info" style="margin-top: -200px">
+                <div class="desc">
+                	<p>A Software Programmer in core application development. Mostly on Python both web based and command line applications.
+                        Experience of understanding business requirements in terms of their workflow and further customized overall solution as per the business requirements.
+                    </p>
+                </div>
+                <div class="subnavContainer">
+                    <div class="subnavLeft">
+                        <div class="subnavResume footer-menu-item">
+                            <a href="{% url 'resume' %}" class="invert coloricon"></a><br />
+                            <a href="{% url 'resume' %}">Resume</a>
+                        </div>
+{#                        <div class="subnavPortfolio footer-menu-item">#}
+{#                            <a href="http://themes.themebakers.com/biopic/portfolio/" class="invert coloricon"></a><br />#}
+{#                            <a href="http://themes.themebakers.com/biopic/portfolio/" >Portfolio</a>#}
+{#                        </div>#}
+                    </div>
+                    <div class="subnavRight">
+                    	<div class="subnavBlog footer-menu-item">
+                            <a href="http://blog-changeit.rhcloud.com/" class="invert coloricon"></a><br />
+                            <a href="http://blog-changeit.rhcloud.com/" >Blog</a>
+                        </div>
+                        <div class="subnavContact footer-menu-item">
+                            <a href="{% url 'contact' %}" class="invert coloricon"></a><br />
+                            <a href="{% url 'contact' %}" >Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{%endblock %}
