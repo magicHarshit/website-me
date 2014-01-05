@@ -169,3 +169,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 # git remote add heroku git@heroku.com:website-me.git
 # http://website-me.herokuapp.com/ | git@heroku.com:website-me.git
+# 54.225.241.187
+# 184.168.221.23
